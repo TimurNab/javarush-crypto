@@ -1,11 +1,16 @@
 package com.javarush.cryptoanalyser;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Crypto {
-    private static final char[] ALPHABET = {'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё','Ж', 'З', 'И', 'Й', 'К', 'Л',
-            'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь', 'Э',
-            'Ю', 'Я', 'а', 'б', 'в', 'г', 'д', 'е', 'ё','ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р',
-            'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я', '.', ',', '«',
-            '»', '"', '\'', ':', '!', '?', ' '};
+    private static final char[] ALPHABET = {' ', '!', '\"', '\'', ',', '.', ':', ';', '?', '«', '»', 'Ё', 'А', 'Б', 'В',
+            'Г', 'Д', 'Е', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш',
+            'Щ', 'Ъ', 'Ы', 'Ь', 'Э', 'Ю', 'Я', 'а', 'б', 'в', 'г', 'д', 'е', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о',
+            'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я', 'ё'};
+    public static int arrayLength = ALPHABET.length;
+
 
     public static String enCode(String str, int key) {
         StringBuilder sb = new StringBuilder();
@@ -15,13 +20,12 @@ public class Crypto {
             for (int j = 0; j < ALPHABET.length; j++) {
                 if (strCharAt == ALPHABET[j]) {
                     value = j + key;
-                    if (value > ALPHABET.length) {
+                    if (value > ALPHABET.length - 1) {
                         value = value - ALPHABET.length;
-                        //continue;
                     } else if (value < 0) {
                         value = value + ALPHABET.length;
-                        //continue;
                     }
+                    break;
                 }
             }
             sb.append(ALPHABET[value]);
